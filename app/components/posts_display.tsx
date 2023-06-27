@@ -1,7 +1,11 @@
+import { headers } from "next/headers";
 import { prisma } from "../db";
-
+import 'server-only'
 
 export default async function PostsDisplay() {
+  // force dynamic rendering of this component
+  const headersList = headers();
+
   const posts = await prisma.posts.findMany({
     orderBy: {
       createdAt: "desc",
