@@ -45,24 +45,27 @@ export default function PostCreator() {
             body: JSON.stringify(body),
         }).then((res) => {
             router.refresh()
-        });
+        }); 
     }
 
     return (
-        <div className="flex flex-col gap-3">
-            <input type="text" onChange={titleChanged} placeholder="title" className="rounded-xl p-3 m-3 shadow-xl font-bold" />
-            <input type="text" onChange={imageUrlChanged} placeholder="image url" className="rounded-xl p-3 m-3 shadow-xl font-bold" />
-            <input
-                type="text"
-                onChange={imageAltChanged}
-                placeholder="image alt text"
-                className="rounded-xl p-3 m-3 shadow-xl font-bold"
-            />
-            <p className="my-3 mx-8 text-2xl font-bold">content</p>
-            <textarea rows={30} cols={30} onChange={contentChanged} className="rounded-xl p-3 m-3 shadow-xl font-bold h-45"></textarea>
-            <div className="flex justify-center items-center">
-                <button onClick={submit} className="rounded-full shadow-xl font-black text-xl text-white bg-teal-500 py-5 px-12">submit</button>
-            </div> 
-        </div> 
+        <div className="flex justify-center items-center">
+            <div className="flex flex-col grow md:grow-0 md:w-[100ch]">
+                <input type="text" onChange={titleChanged} placeholder="title" className="bg-slate-50 rounded-xl p-3 m-3 shadow-xl font-bold" />
+                <input type="text" onChange={imageUrlChanged} placeholder="image url" className="bg-slate-50 rounded-xl p-3 m-3 shadow-xl font-bold" />
+                <input
+                    type="text"
+                    onChange={imageAltChanged}
+                    placeholder="image alt text"
+                    className="bg-slate-50 rounded-xl p-3 m-3 shadow-xl font-bold"
+                />
+                <p className="my-3 mx-8 text-2xl font-bold">content</p>
+                <textarea rows={30} cols={30} onChange={contentChanged} className="bg-slate-50 rounded-xl p-3 m-3 shadow-xl font-bold h-45"></textarea>
+                <div className="flex justify-center items-center">
+                    <button onClick={submit} className="rounded-full shadow-xl font-black text-xl text-white bg-teal-500 py-5 px-12 my-6">submit</button>
+                </div>
+            </div>
+        </div>
+
     );
 }

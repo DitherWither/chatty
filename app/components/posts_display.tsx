@@ -19,8 +19,10 @@ export default async function PostsDisplay() {
   });
 
   return (
-    <div className="grid grid-flow-row gap-4">
-      {postsList}
+    <div className="flex justify-center">
+      <div className="grid grid-flow-row grow md:grow-0 md:w-[100ch]">
+        {postsList}
+      </div>
     </div>
   );
 }
