@@ -1,5 +1,7 @@
 import { headers } from "next/headers";
 import { prisma } from "../db";
+import { remark } from 'remark';
+import html from 'remark-html';
 import 'server-only'
 
 export default async function PostsDisplay() {
@@ -18,12 +20,12 @@ export default async function PostsDisplay() {
 
   return (
     <div className="grid grid-flow-row gap-4">
-        {postsList}
+      {postsList}
     </div>
   );
 }
 
-function Post({
+async function Post({
   post,
 }: {
   post: {
@@ -35,11 +37,13 @@ function Post({
     createdAt: Date;
   };
 }) {
+  const content = (await remark().use(html).process(post.content ?? "")).toString()
+
   return (
-    <div className="p-3 m-3 bg-slate-200 rounded-xl shadow-xl">
+    <div className="p-3 m-3 bg-slate-50 rounded-xl shadow-xl">
       <h2 className="text-3xl font-bold">{post.title}</h2>
       {/* TODO: Add a share feature */}
-      {post.content ? <p className="text-xl">{post.content}</p> : <></>}
+      {post.content ? <div className="prose" dangerouslySetInnerHTML={{ __html: content }}></div> : <></>}
       {post.imageUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={post.imageUrl} alt={post.imageAlt ?? ""} className="rounded-xl m-4 object-contain md:max-w-3xl" />
